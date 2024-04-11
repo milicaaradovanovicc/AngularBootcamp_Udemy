@@ -1,2 +1,14 @@
 <app-divider>Modal component</app-divider>
-<app-modal></app-modal>
+<button (click)="onClick()">Show Modal</button>
+<app-modal (close)="onClick()" *ngIf="modalOpen">
+  <div modalTitle>Reusable Title</div>
+  <p>
+    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate
+    explicabo nesciunt, velit sequi consectetur veritatis nulla ratione laborum
+    nisi praesentium quidem assumenda iste eveniet culpa minus laboriosam
+    corporis quis veniam!
+  </p>
+  <ng-container modalFooter>
+    <button class="ui button" (click)="onClick()">CLOSE ME</button>
+  </ng-container>
+</app-modal>
