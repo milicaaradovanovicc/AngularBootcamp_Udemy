@@ -1,10 +1,24 @@
 import { Component } from '@angular/core';
+import { WikipeediaService } from './wikipeedia.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'wsearch';
+  pages: {
+    title: string;
+    wordcount: number;
+    snippet: string;
+    pageid: string;
+  }[] = [];
+
+  constructor(private wikipedia: WikipeediaService) {}
+
+  onTerm(term: string) {
+    this.wikipedia.search(term).subscribe((response: any) => {
+      this.pages = response.query.search;
+    });
+  }
 }
