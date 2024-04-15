@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-search-bar',
@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./search-bar.component.css'],
 })
 export class SearchBarComponent {
+  @Output() submitted = new EventEmitter<string>();
   term = '';
 
   updateTerm(event: Event) {
@@ -17,5 +18,6 @@ export class SearchBarComponent {
 
   onFormSubmit(event: Event) {
     event.preventDefault();
+    this.submitted.emit(this.term);
   }
 }
