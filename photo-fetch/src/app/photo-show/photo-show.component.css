@@ -1,0 +1,10 @@
+img {
+  width: 400px;
+}
+button {
+  margin: 20px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 5px;
+  color: black;
+}
