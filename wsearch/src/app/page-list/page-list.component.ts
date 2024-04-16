@@ -6,11 +6,6 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./page-list.component.css'],
 })
 export class PageListComponent {
-  @Input() pages: {
-    title: string;
-    wordcount: number;
-    snippet: string;
-    pageid: string;
-  }[] = [];
+  @Input() pages = [];
   xss = `<IMG SRC="javascript:alert('XSS'):">`;
 }
