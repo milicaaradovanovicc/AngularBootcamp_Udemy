@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class SignoutComponent {
   constructor(private authService: AuthService, private router: Router) {}
-  ngOnInti() {
+  ngOnInit() {
     this.authService.signout().subscribe(() => {
       this.router.navigateByUrl('/');
     });

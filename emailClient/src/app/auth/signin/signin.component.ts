@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-signin',
@@ -20,6 +21,29 @@ export class SigninComponent {
       Validators.maxLength(20),
     ]),
   });
-  
-  constructor() {}
+
+  constructor(private authService: AuthService) {}
+
+  onSubmit() {
+    if (this.authForm.invalid) {
+      return;
+    }
+
+    // Extract non-null values from authForm.value
+    const { username, password } = this.authForm.value;
+    if (!username || !password) {
+      // Handle error, perhaps by displaying a message to the user
+      return;
+    }
+
+    // Proceed with signin
+    this.authService.signin({ username, password }).subscribe({
+      next: () => {},
+      error: ({ error }) => {
+        if (error.username || error.password) {
+          this.authForm.setErrors({ credentials: true });
+        }
+      },
+    });
+  }
 }
