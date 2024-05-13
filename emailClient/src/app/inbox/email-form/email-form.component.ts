@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Email } from '../email';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -13,6 +13,8 @@ export class EmailFormComponent {
   @Input()
   email!: Email;
 
+  @Output() emailSubmit = new EventEmitter();
+
   constructor() {}
 
   ngOnInit() {
@@ -24,5 +26,16 @@ export class EmailFormComponent {
       subject: new FormControl(subject, [Validators.required]),
       text: new FormControl(text, [Validators.required]),
     });
+  }
+
+  onSubmit() {
+    if (this.emailForm.invalid) {
+      return;
+    }
+
+    this.emailSubmit.emit(this.emailForm.value);
+
+    //ako hocemo da vidimo FROM koji je disabled
+    //console.log(this.emailForm.getRawValue());
   }
 }

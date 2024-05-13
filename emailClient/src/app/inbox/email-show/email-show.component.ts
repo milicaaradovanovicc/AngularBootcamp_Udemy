@@ -9,7 +9,7 @@ import { Email } from '../email';
   styleUrls: ['./email-show.component.css'],
 })
 export class EmailShowComponent {
-  email: Email | undefined;
+  email: Email;
 
   constructor(private route: ActivatedRoute) {
     this.email = route.snapshot.data['email'];
